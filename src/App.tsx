@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import { useSelector } from 'react-redux';
 import CreateMeeting from './pages/CreateMeeting';
+import OneonOneMeeting from './pages/OneonOneMeeting';
 function App() {
   // const isDarkTheme = useSelector((state: any) => state.auth.isDarkTheme());
 
@@ -43,6 +44,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="*" element={<Dashboard />} />
             <Route path="/create" element={<CreateMeeting />} />
+            <Route path="/create1on1" element={<OneonOneMeeting />} />
           </Routes>
         </EuiThemeProvider>
       </EuiProvider>

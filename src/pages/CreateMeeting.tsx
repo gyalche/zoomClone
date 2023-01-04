@@ -18,9 +18,20 @@ const CreateMeeting = () => {
         <EuiFlexItem>
           <EuiCard
             // layout="horizontal"
-            icon={<EuiImage size="5rem" alt="icon" src={meeting1} />}
+            icon={<EuiImage size="100%" alt="icon" src={meeting1} />}
             title={`Create 1 on 1 Meeting`}
             description="Create a personal single person meeting"
+            onClick={() => navigate('/create1on1')}
+            paddingSize="xl"
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiCard
+            // layout="horizontal"
+            icon={<EuiImage size="100%" alt="icon" src={meeting1} />}
+            title={`create video conference`}
+            description="invite multiple person to the meeting"
             onClick={() => navigate('/create1on1')}
             paddingSize="xl"
           />

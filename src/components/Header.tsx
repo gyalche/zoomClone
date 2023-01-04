@@ -19,6 +19,7 @@ import {
 } from '@elastic/eui';
 import { signOut } from 'firebase/auth';
 import { firebaseAuth } from '../utils/FirebaseConfig';
+import { getCreateMeetingBreadCrumbs } from '../utils/BreadCrumbs';
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,6 +31,12 @@ const Header = () => {
   const logout = () => {
     signOut(firebaseAuth);
   };
+  useEffect(() => {
+    const { pathname } = location;
+    if (pathname === '/create') {
+      setBreadCrumbs(getCreateMeetingBreadCrumbs(navigate));
+    }
+  }, [location, navigate]);
   const sections: any = [
     {
       items: [
