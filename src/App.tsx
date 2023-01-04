@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import { useSelector } from 'react-redux';
+import CreateMeeting from './pages/CreateMeeting';
 function App() {
   // const isDarkTheme = useSelector((state: any) => state.auth.isDarkTheme());
 
@@ -41,6 +42,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Dashboard />} />
             <Route path="*" element={<Dashboard />} />
+            <Route path="/create" element={<CreateMeeting />} />
           </Routes>
         </EuiThemeProvider>
       </EuiProvider>
