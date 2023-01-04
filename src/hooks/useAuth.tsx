@@ -10,7 +10,7 @@ const useAuth = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
-      if (!currentUser) navigate('/');
+      if (!currentUser) navigate('/login');
       else {
         dispatch(
           setUser({
