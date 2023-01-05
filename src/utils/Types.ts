@@ -10,3 +10,9 @@ export interface userType {
   uid: string;
   label: string;
 }
+
+export interface FieldErrorType {
+  show: boolean;
+  message: Array<string>;
+  
+}

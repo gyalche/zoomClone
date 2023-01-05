@@ -9,6 +9,8 @@ const MeetingUserField = ({
   isClearable,
   placeholder,
   singleSelection = false,
+  isInvalid,
+  error,
 }: {
   label: string;
   options: any;
@@ -17,6 +19,8 @@ const MeetingUserField = ({
   isClearable: boolean;
   placeholder: string;
   singleSelection: any;
+  isInvalid: boolean;
+  error: Array<string>;
 }) => {
   return (
     <EuiFormRow label={label}>
@@ -27,6 +31,7 @@ const MeetingUserField = ({
         singleSelection={singleSelection}
         placeholder={placeholder}
         isClearable={isClearable}
+        isInvalid={isInvalid}
       />
     </EuiFormRow>
   );
