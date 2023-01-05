@@ -14,5 +14,9 @@ export interface userType {
 export interface FieldErrorType {
   show: boolean;
   message: Array<string>;
-  
+}
+export interface ToastType {
+  id: string;
+  title: string;
+  color: 'success' | 'primary' | 'daner' | undefined;
 }

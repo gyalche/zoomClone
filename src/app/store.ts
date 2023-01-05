@@ -1,9 +1,11 @@
 import { authSlice } from './slices/authSlice';
 import { configureStore } from '@reduxjs/toolkit';
+import meetingSlice from './slices/meetingSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
+    meetings: meetingSlice,
   },
 });
 

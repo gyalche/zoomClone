@@ -19,7 +19,10 @@ import {
 } from '@elastic/eui';
 import { signOut } from 'firebase/auth';
 import { firebaseAuth } from '../utils/FirebaseConfig';
-import { getCreateMeetingBreadCrumbs } from '../utils/BreadCrumbs';
+import {
+  getCreateMeetingBreadCrumbs,
+  getOneonOneMeetingBreadCrumbs,
+} from '../utils/BreadCrumbs';
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,7 +38,8 @@ const Header = () => {
     const { pathname } = location;
     if (pathname === '/create') {
       setBreadCrumbs(getCreateMeetingBreadCrumbs(navigate));
-    }
+    } else if (pathname === '/create1on1')
+      setBreadCrumbs(getOneonOneMeetingBreadCrumbs(navigate));
   }, [location, navigate]);
   const sections: any = [
     {

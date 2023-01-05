@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { EuiProvider, EuiThemeColorMode, EuiThemeProvider } from '@elastic/eui';
+import {
+  EuiGlobalToastList,
+  EuiProvider,
+  EuiThemeColorMode,
+  EuiThemeProvider,
+} from '@elastic/eui';
 import '@elastic/eui/dist/eui_theme_light.css';
 import '@elastic/eui/dist/eui_theme_dark.css';
 
@@ -9,6 +14,8 @@ import Dashboard from './pages/Dashboard';
 import { useSelector } from 'react-redux';
 import CreateMeeting from './pages/CreateMeeting';
 import OneonOneMeeting from './pages/OneonOneMeeting';
+import { useDispatch } from 'react-redux';
+import { setToasts } from './app/slices/meetingSlice';
 function App() {
   // const isDarkTheme = useSelector((state: any) => state.auth.isDarkTheme());
 
@@ -29,11 +36,21 @@ function App() {
   //     window.location.reload();
   //   }
   // }, [isDarkTheme]);
+  const toasts = useSelector((state: any) => state.meetings.toasts);
+
+  const dispatch = useDispatch();
   const overrides = {
     colors: {
       LIGHT: { primary: '#0b5cff' },
       DARK: { primary: '#0b5cff' },
     },
+  };
+  const removeToasts = (removeToasts: { id: string }) => {
+    dispatch(
+      setToasts(
+        toasts.filter((toast: { id: string }) => toast.id === removeToasts.id)
+      )
+    );
   };
   return (
     <div className="App">
@@ -46,6 +63,11 @@ function App() {
             <Route path="/create" element={<CreateMeeting />} />
             <Route path="/create1on1" element={<OneonOneMeeting />} />
           </Routes>
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={removeToasts}
+            toastLifeTimeMs={5000}
+          />
         </EuiThemeProvider>
       </EuiProvider>
     </div>

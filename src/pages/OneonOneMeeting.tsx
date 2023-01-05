@@ -14,6 +14,7 @@ import { meetingRef } from '../utils/FirebaseConfig';
 import { generateMeetingID } from '../utils/generateMeetingID';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
+import useToast from '../hooks/useToast';
 const OneonOneMeeting = () => {
   useAuth();
   const { uid } = useSelector((state: any) => state.auth?.userInfo);
@@ -28,7 +29,8 @@ const OneonOneMeeting = () => {
   const onUserChange = (selectedOptions: any) => {
     setSelectedUsers(selectedOptions);
   };
-
+  const [createToast] = useToast();
+  console.log('this is creat toasts', createToast);
   const [showErrors, setShowErrors] = useState<{
     meetingName: FieldErrorType;
     meetingUser: FieldErrorType;
@@ -71,7 +73,10 @@ const OneonOneMeeting = () => {
         maxUsers: 1,
         status: true,
       });
-
+      createToast({
+        title: 'One on One meeting create sucessfully',
+        type: 'success',
+      });
       navigate('/');
     }
   };
