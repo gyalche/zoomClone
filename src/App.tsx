@@ -17,6 +17,7 @@ import OneonOneMeeting from './pages/OneonOneMeeting';
 import { useDispatch } from 'react-redux';
 import { setToasts } from './app/slices/meetingSlice';
 import VideoConference from './pages/VideoConference';
+import MyMeetings from './pages/MyMeetings';
 function App() {
   // const isDarkTheme = useSelector((state: any) => state.auth.isDarkTheme());
 
@@ -49,7 +50,7 @@ function App() {
   const removeToasts = (removeToasts: { id: string }) => {
     dispatch(
       setToasts(
-        toasts.filter((toast: { id: string }) => toast.id === removeToasts.id)
+        toasts.filter((toast: { id: string }) => toast.id !== removeToasts.id)
       )
     );
   };
@@ -64,6 +65,7 @@ function App() {
             <Route path="/create" element={<CreateMeeting />} />
             <Route path="/create1on1" element={<OneonOneMeeting />} />
             <Route path="/videoconference" element={<VideoConference />} />
+            <Route path="mymeetings" element={<MyMeetings />} />
           </Routes>
           <EuiGlobalToastList
             toasts={toasts}

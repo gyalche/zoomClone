@@ -22,6 +22,7 @@ import { firebaseAuth } from '../utils/FirebaseConfig';
 import {
   getCreateMeetingBreadCrumbs,
   getOneonOneMeetingBreadCrumbs,
+  getVideoConferenceBreadCrumbs,
 } from '../utils/BreadCrumbs';
 const Header = () => {
   const navigate = useNavigate();
@@ -40,6 +41,8 @@ const Header = () => {
       setBreadCrumbs(getCreateMeetingBreadCrumbs(navigate));
     } else if (pathname === '/create1on1')
       setBreadCrumbs(getOneonOneMeetingBreadCrumbs(navigate));
+    else if (pathname === '/videocoference')
+      setBreadCrumbs(getVideoConferenceBreadCrumbs(navigate));
   }, [location, navigate]);
   const sections: any = [
     {
