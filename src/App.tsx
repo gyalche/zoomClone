@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import { setToasts } from './app/slices/meetingSlice';
 import VideoConference from './pages/VideoConference';
 import MyMeetings from './pages/MyMeetings';
+import Meeting from './pages/Meeting';
 function App() {
   // const isDarkTheme = useSelector((state: any) => state.auth.isDarkTheme());
 
@@ -65,7 +66,8 @@ function App() {
             <Route path="/create" element={<CreateMeeting />} />
             <Route path="/create1on1" element={<OneonOneMeeting />} />
             <Route path="/videoconference" element={<VideoConference />} />
-            <Route path="mymeetings" element={<MyMeetings />} />
+            <Route path="/mymeetings" element={<MyMeetings />} />
+            <Route path="/meetings" element={<Meeting />} />
           </Routes>
           <EuiGlobalToastList
             toasts={toasts}

@@ -18,7 +18,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import EditFlyout from '../components/EditFlyout';
 
-const MyMeetings = () => {
+const Meeting = () => {
   useAuth();
   const [meetings, setMeetings] = useState<any>([]);
   const userinfo = useSelector((state: any) => state.auth?.userInfo);
@@ -32,10 +32,18 @@ const MyMeetings = () => {
     if (fetchMeetings.docs.length) {
       const myMeetings: Array<MeetingType> = [];
       fetchMeetings.forEach((meeting) => {
-        myMeetings.push({
-          docId: meeting.id,
-          ...(meeting.data() as MeetingType),
-        });
+        const data = meeting.data() as MeetingType;
+        if (data.createdBy === userinfo?.uid) {
+          myMeetings.push(data);
+        } else if (data.meetingType === 'any-one-join') myMeetings.push(data);
+        else {
+          const index = data.invitedUsers.findIndex(
+            (user) => user === userinfo.uid
+          );
+          if (index !== -1) {
+            myMeetings.push(data);
+          }
+        }
       });
 
       setMeetings(myMeetings);
@@ -45,20 +53,6 @@ const MyMeetings = () => {
     console.log('Meeting lists', meetings);
     getMyMeetings();
   }, [userinfo]);
-
-  const [showEditFlyout, setShowEditFlyout] = useState(false);
-  const [editMeeting, setEditMeeting] = useState<MeetingType>();
-
-  const openEditFlyout = (meeting: MeetingType) => {
-    setShowEditFlyout(true);
-    setEditMeeting(meeting);
-  };
-
-  const closeEditFlyout = (dataChanged = false) => {
-    setShowEditFlyout(false);
-    setEditMeeting(undefined);
-    if (dataChanged) getMyMeetings();
-  };
 
   const columns = [
     {
@@ -110,7 +104,6 @@ const MyMeetings = () => {
               !meeting.status ||
               moment(meeting.meetingDate).isBefore(moment().format('L'))
             }
-            onClick={() => openEditFlyout(meeting)}
           />
         );
       },
@@ -149,11 +142,8 @@ const MyMeetings = () => {
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
-      {showEditFlyout && (
-        <EditFlyout closeFlyout={closeEditFlyout} meetings={editMeeting!} />
-      )}
     </div>
   );
 };
 
-export default MyMeetings;
+export default Meeting;
