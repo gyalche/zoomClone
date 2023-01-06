@@ -85,7 +85,7 @@ const JoinMeeting = () => {
     };
     getMeetingData();
   }, [userLoaded]);
-  const appId = '';
+  const appId = 234324235435;
   const serverSecret = '';
   const myMeeting = async (element: any) => {
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -102,7 +102,7 @@ const JoinMeeting = () => {
       sharedLinks: [
         {
           name: 'Personal Link',
-          url: window.location.replace.origin,
+          url: window.location.origin,
         },
       ],
       scenario: {
