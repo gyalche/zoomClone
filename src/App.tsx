@@ -19,6 +19,7 @@ import { setToasts } from './app/slices/meetingSlice';
 import VideoConference from './pages/VideoConference';
 import MyMeetings from './pages/MyMeetings';
 import Meeting from './pages/Meeting';
+import JoinMeeting from './components/JoinMeeting';
 function App() {
   // const isDarkTheme = useSelector((state: any) => state.auth.isDarkTheme());
 
@@ -68,6 +69,7 @@ function App() {
             <Route path="/videoconference" element={<VideoConference />} />
             <Route path="/mymeetings" element={<MyMeetings />} />
             <Route path="/meetings" element={<Meeting />} />
+            <Route path="/join/:id" element={<JoinMeeting />} />
           </Routes>
           <EuiGlobalToastList
             toasts={toasts}

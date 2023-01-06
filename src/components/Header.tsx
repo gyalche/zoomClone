@@ -21,6 +21,7 @@ import { signOut } from 'firebase/auth';
 import { firebaseAuth } from '../utils/FirebaseConfig';
 import {
   getCreateMeetingBreadCrumbs,
+  getMeetingsBreadcrumbs,
   getMyMeetingsBreadcrumbs,
   getOneonOneMeetingBreadCrumbs,
   getVideoConferenceBreadCrumbs,
@@ -46,6 +47,8 @@ const Header = () => {
       setBreadCrumbs(getVideoConferenceBreadCrumbs(navigate));
     else if (pathname === '/mymeetings')
       setBreadCrumbs(getMyMeetingsBreadcrumbs(navigate));
+    else if (pathname === '/meetings')
+      setBreadCrumbs(getMeetingsBreadcrumbs(navigate));
   }, [location, navigate]);
   const sections: any = [
     {

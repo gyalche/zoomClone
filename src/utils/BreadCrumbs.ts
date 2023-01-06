@@ -74,3 +74,17 @@ export const getMyMeetingsBreadcrumbs = (
     text: 'My Meetings',
   },
 ];
+export const getMeetingsBreadcrumbs = (
+  navigate: NavigateFunction
+): Array<BreadCrumbsType> => [
+  {
+    text: 'Dashboard',
+    href: '#',
+    onClick: () => {
+      navigate('/');
+    },
+  },
+  {
+    text: 'Meetings',
+  },
+];
